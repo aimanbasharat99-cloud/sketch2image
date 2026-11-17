@@ -25,7 +25,7 @@ sketch2image_colab.ipynb   run everything on a free Colab T4 GPU
 ## Installation
 Needs an NVIDIA GPU with ≥ 6 GB VRAM (or use the Colab notebook). Python 3.10+.
 ```bash
-git clone https://github.com/<your-username>/sketch2image.git
+git clone https://github.com/aimanbasharat99-cloud/sketch2image.git
 cd sketch2image
 python -m venv .venv && source .venv/bin/activate
 pip install torch --index-url https://download.pytorch.org/whl/cu121   # match your CUDA
