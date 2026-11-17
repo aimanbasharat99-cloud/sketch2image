@@ -5,20 +5,21 @@ Turns hand-drawn sketches into realistic images while preserving the drawn struc
 preprocessing step, a quantitative sketch-preservation metric, a 7-experiment study, and a
 Gradio web app.
 
-![pipeline](report/pipeline.png)
+![pipeline](pipeline.png)
 
-## Repository structure
+## Repository structure (flat, all files at the top level)
 ```
-src/preprocess.py   photo of paper sketch -> clean white-on-black control map (scribble / lineart / canny)
-src/pipeline.py     SD 1.5 + ControlNet wrapper; swap ControlNet types without reloading SD; optional LoRA
-src/metrics.py      edge recall / precision / F1 (sketch preservation) and CLIP score (prompt alignment)
-src/viz.py          comparison grids
+preprocess.py       photo of paper sketch -> clean white-on-black control map (scribble / lineart / canny)
+pipeline.py         SD 1.5 + ControlNet wrapper; swap ControlNet types without reloading SD; optional LoRA
+metrics.py          edge recall / precision / F1 (sketch preservation) and CLIP score (prompt alignment)
+viz.py              comparison grids
 generate.py         single generation from the command line
-experiments.py      experiments E1–E7 -> outputs/experiments/ (grids + metrics.csv)
+experiments.py      experiments E1-E7 -> outputs/experiments/ (grids + metrics.csv)
 app.py              Gradio UI (upload or draw a sketch, prompt, style presets, sliders)
 prompts.json        subject + 3 style prompts per sketch
-sketches/           input sketches
-tools/make_test_sketches.py   synthetic placeholder sketches (only for testing the pipeline)
+building.png, character.png, product.png   my input sketches
+REPORT.md, pipeline.png, preprocessing.png  report draft and figures
+make_test_sketches.py   synthetic placeholder sketches (testing only, writes test_sketches/)
 sketch2image_colab.ipynb   run everything on a free Colab T4 GPU
 ```
 
@@ -36,7 +37,7 @@ Model weights (~6 GB) download automatically from Hugging Face on first run.
 ## Usage
 ```bash
 # one image
-python generate.py --sketch sketches/building.png \
+python generate.py --sketch building.png \
   --prompt "a futuristic skyscraper, glass and steel facade, golden hour, architectural photography" \
   --mode scribble --cond-scale 1.0 --seed 42 --n 2
 
@@ -92,7 +93,7 @@ that are not in the sketch. **CLIP score** measures how well the image matches t
 Verified end to end on Google Colab (Tesla T4, Python 3.13, latest diffusers), Nov 2026: single generation ~1 min including first model download, experiments E1+E3+E5 on 3 sketches ~6 min, Gradio app launches with `--share`.
 
 ## Sketches
-All sketches in `sketches/` were drawn by me (Aiman Basharat Abbasi) for this project.
+All sketches (building.png, character.png, product.png) were drawn by me (Aiman Basharat Abbasi) for this project.
 
 ## AI assistance
 Parts of the code and documentation were drafted with an AI coding assistant (Claude, Anthropic).

@@ -1,7 +1,7 @@
 """Single generation from the command line.
 
 Example:
-  python generate.py --sketch sketches/building.png \
+  python generate.py --sketch building.png \
       --prompt "a futuristic skyscraper, glass facade, golden hour, photo" \
       --mode scribble --cond-scale 1.0 --seed 42
 """
@@ -10,9 +10,9 @@ from pathlib import Path
 
 from PIL import Image
 
-from src.pipeline import GenConfig, SketchToImage
-from src.metrics import edge_f1
-from src.viz import make_grid
+from pipeline import GenConfig, SketchToImage
+from metrics import edge_f1
+from viz import make_grid
 
 
 def main():

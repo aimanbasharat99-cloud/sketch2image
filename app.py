@@ -9,8 +9,8 @@ import gradio as gr
 import numpy as np
 from PIL import Image
 
-from src.metrics import edge_f1
-from src.pipeline import DEFAULT_NEGATIVE, GenConfig, SketchToImage
+from metrics import edge_f1
+from pipeline import DEFAULT_NEGATIVE, GenConfig, SketchToImage
 
 STYLE_PRESETS = {
     "None": "",

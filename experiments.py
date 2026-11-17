@@ -21,9 +21,9 @@ from pathlib import Path
 
 from PIL import Image
 
-from src.metrics import ClipScorer, edge_f1
-from src.pipeline import GenConfig, SketchToImage
-from src.viz import make_grid
+from metrics import ClipScorer, edge_f1
+from pipeline import GenConfig, SketchToImage
+from viz import make_grid
 
 ROOT = Path(__file__).parent
 SWEEPS = {
@@ -40,7 +40,7 @@ SWEEPS = {
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", nargs="*", default=list(SWEEPS))
-    ap.add_argument("--sketch-dir", default=str(ROOT / "sketches"))
+    ap.add_argument("--sketch-dir", default=str(ROOT))
     ap.add_argument("--out", default=str(ROOT / "outputs" / "experiments"))
     ap.add_argument("--steps", type=int, default=30)
     ap.add_argument("--no-clip", action="store_true")
