@@ -1,0 +1,27 @@
+{
+  "_comment": "One entry per sketch file in sketches/. 'subject' describes WHAT is drawn; 'styles' are the prompt variations tested in experiment E5. Edit these to match your own drawings.",
+  "building.png": {
+    "subject": "a futuristic skyscraper",
+    "styles": {
+      "photo": "a futuristic skyscraper, glass and steel facade, golden hour lighting, architectural photography, highly detailed, 8k",
+      "night": "a futuristic skyscraper at night, neon lights, cyberpunk city, rain reflections, cinematic",
+      "concept": "a futuristic skyscraper, concept art, matte painting, overgrown with plants, solarpunk, soft daylight"
+    }
+  },
+  "character.png": {
+    "subject": "a cartoon robot character",
+    "styles": {
+      "photo": "a friendly robot, brushed metal body, studio lighting, product photography, highly detailed",
+      "night": "a friendly robot in a dark workshop, glowing blue eyes, dramatic rim lighting, cinematic",
+      "concept": "a friendly robot, 3d render, pixar style, colorful, soft lighting"
+    }
+  },
+  "product.png": {
+    "subject": "a coffee mug",
+    "styles": {
+      "photo": "a ceramic coffee mug, glossy white glaze, on a wooden table, soft morning light, product photography, highly detailed",
+      "night": "a coffee mug with steam rising, dark cafe, warm candle light, cinematic, moody",
+      "concept": "a handmade coffee mug, colorful hand-painted pattern, studio background, 3d render"
+    }
+  }
+}
