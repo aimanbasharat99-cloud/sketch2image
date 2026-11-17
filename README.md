@@ -17,8 +17,8 @@ generate.py         single generation from the command line
 experiments.py      experiments E1-E7 -> outputs/experiments/ (grids + metrics.csv)
 app.py              Gradio UI (upload or draw a sketch, prompt, style presets, sliders)
 prompts.json        subject + 3 style prompts per sketch
-building.png, character.png, product.png   my input sketches
-REPORT.md, pipeline.png, preprocessing.png  report draft and figures
+building.png, product.png   my input sketches (phone photos of pen drawings)
+Sketch2Image_Report_Aiman_Basharat_Abbasi.pdf   report; fig*.png, pipeline.png   result figures
 make_test_sketches.py   synthetic placeholder sketches (testing only, writes test_sketches/)
 sketch2image_colab.ipynb   run everything on a free Colab T4 GPU
 ```
@@ -60,8 +60,8 @@ python app.py                    # http://127.0.0.1:7860   (--share for a public
 | control_guidance_start / end | 0.0 / 1.0 |
 | Seed | 42 |
 | Precision | fp16 on GPU |
-| Negative prompt | see `DEFAULT_NEGATIVE` in `src/pipeline.py` |
-| Preprocessing | Gaussian blur 3×3 → adaptive threshold (block 31, C 10) → remove blobs < 20 px → dilate 2×2 |
+| Negative prompt | see `DEFAULT_NEGATIVE` in `pipeline.py` |
+| Preprocessing | pen sketches: HSV saturation ink mask (removes ruled notebook lines) → crop to strokes → 512 px; pencil sketches: blur → adaptive threshold → remove blobs < 20 px → dilate 2×2 |
 
 ## How the sketch influences the image
 Stable Diffusion generates in a 64×64×4 latent space: starting from noise, a U-Net predicts and
@@ -92,8 +92,21 @@ that are not in the sketch. **CLIP score** measures how well the image matches t
 ## Tested setup
 Verified end to end on Google Colab (Tesla T4, Python 3.13, latest diffusers), Nov 2026: single generation ~1 min including first model download, experiments E1+E3+E5 on 3 sketches ~6 min, Gradio app launches with `--share`.
 
+## Results
+Full analysis in `Sketch2Image_Report_Aiman_Basharat_Abbasi.pdf`. Mean over my two sketches:
+
+| Exp | Setting | Edge recall | Edge F1 | CLIP |
+|---|---|---|---|---|
+| E1 | no sketch (scale 0) | 0.41 | 0.26 | 31.5 |
+| E1 | ControlNet scribble, scale 1.0 | 0.73 | 0.57 | 32.3 |
+| E2 | scale 0.3 / 0.6 / 1.0 / 1.5 | 0.35 / 0.65 / 0.73 / 0.76 | 0.30 / 0.41 / 0.57 / 0.63 | 32.6 / 32.9 / 32.3 / 32.6 |
+| E3 | scribble / lineart / canny | 0.73 / 0.60 / 0.78 | 0.57 / 0.71 / 0.80 | 32.3 / 33.0 / 32.6 |
+| E4 | control end 0.3 / 0.6 / 1.0 | 0.57 / 0.70 / 0.73 | 0.47 / 0.56 / 0.57 | 33.3 / 32.2 / 32.3 |
+
+![main results](figA_l.png)
+
 ## Sketches
-All sketches (building.png, character.png, product.png) were drawn by me (Aiman Basharat Abbasi) for this project.
+The sketches (building.png, product.png) were drawn by me (Aiman Basharat Abbasi) for this project.
 
 ## AI assistance
 Parts of the code and documentation were drafted with an AI coding assistant (Claude, Anthropic).
