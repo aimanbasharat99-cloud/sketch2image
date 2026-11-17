@@ -75,7 +75,7 @@ the layout (fixed early) but lets the model refine texture freely.
 
 ## Evaluation metric
 **Edge recall** (with a 4-px tolerance): fraction of sketch stroke pixels that have a Canny edge
-of the generated image nearby — i.e. "how much of my drawing survived". Edge precision and F1
+of the generated image nearby, in other words "how much of my drawing survived". Edge precision and F1
 are reported too; precision is naturally lower because realistic images contain texture edges
 that are not in the sketch. **CLIP score** measures how well the image matches the prompt.
 
@@ -85,7 +85,7 @@ that are not in the sketch. **CLIP score** measures how well the image matches t
 - Ho, Salimans. *Classifier-Free Diffusion Guidance*, 2022. https://arxiv.org/abs/2207.12598
 - Zhao et al. *UniPC: A Unified Predictor-Corrector Framework*, NeurIPS 2023. https://arxiv.org/abs/2302.04867
 - Hessel et al. *CLIPScore*, EMNLP 2021. https://arxiv.org/abs/2104.08718
-- Hugging Face Diffusers — https://github.com/huggingface/diffusers
+- Hugging Face Diffusers: https://github.com/huggingface/diffusers
 - Models: https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5 , https://huggingface.co/lllyasviel/control_v11p_sd15_scribble , https://huggingface.co/lllyasviel/control_v11p_sd15_lineart , https://huggingface.co/lllyasviel/control_v11p_sd15_canny , https://huggingface.co/openai/clip-vit-base-patch32
 - Libraries: PyTorch, Transformers, Accelerate, OpenCV, Pillow, Gradio
 
